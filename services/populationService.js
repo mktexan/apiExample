@@ -2,9 +2,9 @@ const database = require('../db/population')
 
 const getPopulationData = async (city, state) => {
     return new Promise((resolve, reject) => {
-        const population = { population: Number(database[state][city]) }
-
         if (database[state][city] == undefined) return reject()
+        
+        const population = { population: Number(database[state][city]) }
 
         return resolve(population)
     })
