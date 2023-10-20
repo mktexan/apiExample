@@ -13,7 +13,7 @@ const getPopulationData = async (city, state) => {
 const modifyPopulationData = async (city, state, populationData) => {
     return new Promise((resolve, reject) => {
         const stateExists = database[state] !== undefined
-        const cityExists = database[state] !== undefined ? database[state][city] !== undefined : undefined
+        const cityExists = stateExists ? database[state][city] !== undefined : undefined
         const isNewData = !stateExists || !cityExists
 
         if(!stateExists) database[state] = {}
