@@ -7,7 +7,11 @@ const filePath = path.join(__dirname, '../db/database.json')
 setInterval(() => {
     const updatedPopulationData = JSON.stringify(populationData, null, 2)
 
-    !fs.existsSync(filePath) ? console.error('no file') : fs.writeFileSync(filePath, updatedPopulationData)
+    if (!fs.existsSync(filePath)) return console.error('no file')
+
+    fs.writeFile(filePath, updatedPopulationData, (err) => {
+        if (err) console.error('Error writing to file:', err)
+    })
 }, 5000)
 
 module.exports = { populationData }
